@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Prime Web - Elite Engineering & Innovation</title>
+    <style>
+        /* Shared Branding Identity */
+        :root {
+            --primary: #002d62;
+            --primary-hover: #004a99;
+            --accent: #00d2ff;
+            --text-dark: #1a1a1a;
+            --text-light: #64748b;
+            --bg-light: #f8f9fa;
+            
+            --dark-bg: #071324;       
+            --dark-card: #10213a;     
+            --dark-border: rgba(0, 210, 255, 0.2); 
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            background: rgba(7, 19, 36, 0.95);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--dark-border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #b0c4de;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 15px;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent);
+        }
+
+        .nav-btn {
+            background: var(--primary);
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600 !important;
+            border: 1px solid var(--accent);
+            transition: all 0.3s !important;
+        }
+
+        .nav-btn:hover {
+            background: var(--accent);
+            color: var(--primary) !important;
+            box-shadow: 0 0 15px var(--accent);
+        }
+
+        /* Hero Vision Section */
+        .about-hero {
+            padding: 180px 20px 100px 20px;
+            background: radial-gradient(circle at 50% 50%, #0b2244 0%, #071324 100%);
+            text-align: center;
+            position: relative;
+        }
+
+        .about-hero h1 {
+            font-size: 56px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 30%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-hero p {
+            font-size: 20px;
+            color: #b0c4de;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        /* Section Layouts */
+        .section-padding {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .center-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .center-header h2 {
+            font-size: 38px;
+            color: #ffffff;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .center-header h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* 3D Core Pillars Section */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            perspective: 1200px; /* Crucial for intense 3D effect */
+        }
+
+        .pillar-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 16px;
+            padding: 40px 35px;
+            transform-style: preserve-3d;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s;
+            cursor: pointer;
+        }
+
+        .pillar-card:hover {
+            transform: rotateX(7deg) rotateY(-7deg) translateY(-10px);
+            box-shadow: -10px 20px 40px rgba(0, 210, 255, 0.15);
+            border-color: var(--accent);
+        }
+
+        .pillar-icon {
+            font-size: 45px;
+            margin-bottom: 25px;
+            display: inline-block;
+            transform: translateZ(40px); /* Pushes icon out in 3D space */
+            transition: transform 0.4s;
+        }
+
+        .pillar-card:hover .pillar-icon {
+            transform: translateZ(60px) scale(1.15);
+        }
+
+        .pillar-card h3 {
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 15px;
+            transform: translateZ(30px);
+        }
+
+        .pillar-card p {
+            color: #b0c4de;
+            font-size: 15px;
+            line-height: 1.7;
+            transform: translateZ(20px);
+        }
+
+        /* Unique Proprietary Products Section */
+        .product-section {
+            background: #040d1a;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: linear-gradient(145deg, #10213a 0%, #091526 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .product-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .product-card:hover {
+            border-color: var(--dark-border);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+
+        .product-tag {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+            background: rgba(0, 210, 255, 0.1);
+            padding: 5px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .product-card h3 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .product-card p {
+            color: #94a3b8;
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+
+        .view-blueprint-btn {
+            background: transparent;
+            border: 1px dashed var(--accent);
+            color: var(--accent);
+            padding: 12px 25px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .view-blueprint-btn:hover {
+            background: var(--accent);
+            color: var(--primary);
+            border-style: solid;
+            box-shadow: 0 5px 15px rgba(0, 210, 255, 0.3);
+        }
+
+        /* Founder In-Depth Section */
+        .founder-wrapper {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 20px;
+            padding: 60px;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .founder-graphic {
+            flex-shrink: 0;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .founder-frame {
+            width: 260px;
+            height: 260px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 3px solid var(--accent);
+            transform: rotateY(15deg);
+            box-shadow: -15px 15px 30px rgba(0,0,0,0.5);
+            transition: transform 0.5s;
+            background: #10213a;
+        }
+
+        .founder-wrapper:hover .founder-frame {
+            transform: rotateY(0deg) scale(1.05);
+        }
+
+        .founder-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .founder-bio {
+            flex-grow: 1;
+        }
+
+        .founder-bio h3 {
+            font-size: 32px;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .founder-subtitle {
+            color: var(--accent);
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .founder-detailed-text {
+            color: #b0c4de;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* Custom Modals Architecture */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(4, 13, 26, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(12px);
+        }
+
+        .modal-content {
+            background: #0d1b2e;
+            border: 1px solid var(--accent);
+            box-shadow: 0 0 40px rgba(0, 210, 255, 0.25);
+            color: #ffffff;
+            padding: 50px;
+            border-radius: 16px;
+            max-width: 700px;
+            width: 90%;
+            position: relative;
+            transform: scale(0.7);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: left;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-content h2 {
+            font-size: 28px;
+            color: var(--accent);
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
+
+        .modal-features-list {
+            list-style: none;
+        }
+
+        .modal-features-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            color: #b0c4de;
+            font-size: 15px;
+        }
+
+        .modal-features-list li::before {
+            content: '⚡';
+            position: absolute;
+            left: 0; top: 0;
+            color: var(--accent);
+        }
+
+        .close-blueprint {
+            position: absolute;
+            top: 25px; right: 25px;
+            font-size: 35px;
+            background: none;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            transition: color 0.3s;
+            line-height: 1;
+        }
+
+        .close-blueprint:hover {
+            color: #ffffff;
+        }
+
+        /* Footer Alignment */
+        footer {
+            background: #040d1a;
+            color: #b0c4de;
+            padding: 80px 20px 30px 20px;
+            font-size: 15px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-col h3 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -8px;
+            width: 30px; height: 2px;
+            background-color: var(--accent);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #b0c4de;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 30px auto 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        /* Responsive Setup */
+        @media (max-width: 992px) {
+            .founder-wrapper { flex-direction: column; text-align: center; padding: 40px; }
+            .founder-frame { transform: none; margin: 0 auto; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .about-hero h1 { font-size: 38px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">PRIME<span>WEB</span></a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" style="color: var(--accent);">About</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="form.html" class="nav-btn">Get Started</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Vision Section -->
+    <section class="about-hero">
+        <h1>Behind the Pixels & Code</h1>
+        <p>At Prime Web, we don't just build conventional web pages. We engineer complex, highly performant digital ecosystems structured for continuous business conversion and dominance.</p>
+    </section>
+
+    <!-- 3D Core Pillars Section -->
+    <section class="section-padding">
+        <div class="center-header">
+            <h2>Our Architectural Pillars</h2>
+            <p>Hover over the cards to feel the premium 3D deep engineering layers.</p>
+        </div>
+        <div class="pillars-grid">
+            
+            <div class="pillar-card">
+                <div class="pillar-icon">📐</div>
+                <h3>Aesthetic Precision</h3>
+                <p>We craft pristine user interfaces balanced with math-driven alignment guidelines, providing clean layouts that effortlessly capture visitor attention.</p>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-icon">⚡</div>
+                <h3>Hyper-Optimization</h3>
+                <p>Our codebases undergo exhaustive structural performance loops, ensuring near-zero execution times, maximum responsiveness, and perfect SEO configurations.</p>
+            </div>
+
+            <div class="pillar-card">
+                <div class="pillar-icon">🎯</div>
+                <h3>Conversion Logic</h3>
+                <p>Every dynamic button placement, scrolling viewport interaction, and interface asset is engineered purposefully to turn simple interactions into business accounts.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Innovation Lab: Unique Products Showcase -->
+    <section class="section-padding product-section">
+        <div class="center-header">
+            <h2>The Prime Innovation Lab</h2>
+            <p>Discover our proprietary frameworks and unique standalone software engines built in-house.</p>
+        </div>
+        <div class="product-grid">
+
+            <!-- Product 1 -->
+            <div class="product-card">
+                <span class="product-tag">Performance Engine</span>
+                <h3>PrimeSpeed™ Matrix</h3>
+                <p>An in-house optimization wrapper that pre-compiles heavy media files and scripts into raw lightweight binary flows for instantaneous page rendering.</p>
+                <button class="view-blueprint-btn" onclick="openBlueprint('speedModal')">View Technical Blueprint</button>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <span class="product-tag">Security Protocol</span>
+                <h3>CoreShield™ Vault</h3>
+                <p>A hardened server-level security script that actively routes form inputs through multiple data encryptions, mitigating continuous cross-site attacks.</p>
+                <button class="view-blueprint-btn" onclick="openBlueprint('securityModal')">View Technical Blueprint</button>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <span class="product-tag">Data Analytics</span>
+                <h3>NovaAnalytics™ Node</h3>
+                <p>A lightweight, privacy-focused traffic analytics tracker that documents granular visual user scrolling paths without loading bloated third-party trackers.</p>
+                <button class="view-blueprint-btn" onclick="openBlueprint('analyticsModal')">View Technical Blueprint</button>
+            </div>
+
+        </div>
+    </section>
+
+   <!-- In-depth Founder Profile -->
+<section class="section-padding">
+    <div class="founder-wrapper">
+        <div class="founder-graphic">
+            <div class="founder-frame">
+                <!-- Yahan 'my-profile.jpg' ki jagah 'founder.jpg' kar diya gaya hai -->
+                <img src="founder.jpg" alt="Nikhil Sahu" onerror="this.src='https://via.placeholder.com/260'">
+            </div>
+        </div>
+                    <div class="founder-bio">
+                <h3>Nikhil Sahu</h3>
+                <div class="founder-subtitle">Founder & Principal System Architect</div>
+                <p class="founder-detailed-text">
+                    "Prime Web was launched in Dehradun with a core, uncompromising objective: to bridge the vast gap between standard web templates and deep full-stack engineering performance. We look past superficial code design."
+                </p>
+                <p class="founder-detailed-text">
+                    "Every web infrastructure deployed from our laboratory is configured as a scalable revenue-generating asset. We carefully coordinate layout logic, asset compilation pipelines, and database processing to guarantee flawless enterprise reliability."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT MODALS (Pop-ups) -->
+    
+    <!-- Speed Modal -->
+    <div class="modal" id="speedModal">
+        <div class="modal-content">
+            <button class="close-blueprint" onclick="closeBlueprint('speedModal')">&times;</button>
+            <h2>PrimeSpeed™ Matrix Blueprint</h2>
+            <ul class="modal-features-list">
+                <li><strong>Next-Gen Image Compactor:</strong> Automatically transcodes graphics into modern highly efficient layout matrices dynamically.</li>
+                <li><strong>Edge Cache Prefetching:</strong> Intelligently continuous loads subsequent page assets prior to actual customer navigation clicks.</li>
+                <li><strong>Asynchronous Script Defers:</strong> Eliminates initial parsing roadblocks to maintain uninterrupted user viewport rendering.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Security Modal -->
+    <div class="modal" id="securityModal">
+        <div class="modal-content">
+            <button class="close-blueprint" onclick="closeBlueprint('securityModal')">&times;</button>
+            <h2>CoreShield™ Vault Blueprint</h2>
+            <ul class="modal-features-list">
+                <li><strong>End-to-End Handshake Encryption:</strong> Wraps user interactions inside a multi-layered verification layer before database transmission.</li>
+                <li><strong>Automated Threat Blacklisting:</strong> Continuously monitors anomalous traffic spikes to instantly firewall repetitive automated scrapers.</li>
+                <li><strong>Secure Form Sanitization:</strong> Destroys harmful inline code queries injected inside customer text input nodes automatically.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Analytics Modal -->
+    <div class="modal" id="analyticsModal">
+        <div class="modal-content">
+            <button class="close-blueprint" onclick="closeBlueprint('analyticsModal')">&times;</button>
+            <h2>NovaAnalytics™ Node Blueprint</h2>
+            <ul class="modal-features-list">
+                <li><strong>Lightweight Footprint:</strong> Operates inside a mere 1.8KB execution script file, completely bypassing script slowdown.</li>
+                <li><strong>Scroll Depth Auditing:</strong> Records clear tracking logs pinpointing exact sections where user reading engagement declines.</li>
+                <li><strong>GDPR Native Alignment:</strong> Tracks essential transactional usage conversion points without harvestable private consumer cookies.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Big Premium Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="index.html" class="logo" style="display:block; margin-bottom:15px;">PRIME<span>WEB</span></a>
+                <p>We are a high-end web engineering agency dedicated to creating reliable, modern, and perfectly scalable digital ecosystems for companies worldwide.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Innovation Lab</h3>
+                <ul>
+                    <li><a onclick="openBlueprint('speedModal')" style="cursor:pointer;">PrimeSpeed™</a></li>
+                    <li><a onclick="openBlueprint('securityModal')" style="cursor:pointer;">CoreShield™</a></li>
+                    <li><a onclick="openBlueprint('analyticsModal')" style="cursor:pointer;">NovaAnalytics™</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <ul style="color:#b0c4de;">
+                    <li style="margin-bottom:12px;">📍 Dehradun, Uttarakhand</li>
+                    <li style="margin-bottom:12px;">📞 +91 9259540920</li>
+                    <li style="margin-bottom:12px;">✉️ nikhilsahu12390@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Prime Web. All rights reserved.</p>
+            <p>Designed with ❤️ by Prime Web Team</p>
+        </div>
+    </footer>
+
+    <!-- Interactive JavaScript Engine -->
+    <script>
+        // Modal Control Triggers
+        function openBlueprint(id) {
+            document.getElementById(id).classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevents background scroll
+        }
+
+        function closeBlueprint(id) {
+            document.getElementById(id).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close blueprints automatically if user clicks on backdrop canvas
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+    </script>
+</body>
+</html> 

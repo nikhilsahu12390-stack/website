@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Web | Premium Web Development Agency</title>
+    <style>
+        /* Modern CSS Variables for easy color management */
+        :root {
+            --primary: #002d62;
+            --primary-hover: #004a99;
+            --accent: #00d2ff;
+            --text-dark: #1a1a1a;
+            --text-light: #444444;
+            --bg-light: #f8f9fa;
+            
+            /* Website Matched Dark Theme Colors */
+            --dark-bg: #071324;       /* Deep premium navy blue */
+            --dark-card: #10213a;     /* Matched elegant blue card */
+            --dark-border: rgba(0, 210, 255, 0.2); /* Subtle cyan border */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 15px;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        .nav-btn {
+            background: var(--primary);
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600 !important;
+            transition: background 0.3s !important;
+        }
+
+        .nav-btn:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 20px 100px 20px;
+            background: linear-gradient(135deg, #002d62 0%, #001530 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 80% 20%, rgba(0, 210, 255, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #b0c4de;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 16px 36px;
+            background: var(--accent);
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 210, 255, 0.5);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 16px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--bg-light);
+            padding: 40px 30px;
+            border-radius: 8px;
+            text-align: left;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #eee;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-color: var(--accent);
+        }
+
+        .service-icon {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .service-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 15px;
+        }
+
+        /* --- Why Choose Prime Web Section (Premium 3D Animation Style) --- */
+        .why-choose-section {
+            background-color: var(--bg-light);
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .why-grid {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            perspective: 1000px; /* Activates 3D space context */
+        }
+
+        .why-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+            transform-style: preserve-3d; /* Allows inner child depth positioning */
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s, border-color 0.5s;
+        }
+
+        .why-card:hover {
+            /* Smooth 3D tilt lift animation */
+            transform: translateY(-12px) rotateX(4deg) rotateY(4deg);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 45, 98, 0.1), 0 10px 20px rgba(0, 210, 255, 0.08);
+        }
+
+        .why-card-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: transform 0.4s ease;
+        }
+
+        .why-card:hover .why-card-icon {
+            transform: translateZ(25px) scale(1.1); /* Extreme 3D Pop out effect */
+        }
+
+        .why-card h3 {
+            font-size: 22px;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .why-card p {
+            color: var(--text-light);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* --- Types of Websites Section (Matched Premium Theme) --- */
+        .website-types-section {
+            background-color: var(--dark-bg); 
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .website-types-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(0, 210, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .website-types-section .section-header h2 {
+            color: #ffffff;
+        }
+
+        .website-types-section .section-header p {
+            color: #a0c0e0;
+        }
+
+        .types-grid {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .type-card {
+            background-color: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .type-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent); 
+            box-shadow: 0 5px 20px rgba(0, 210, 255, 0.15);
+        }
+
+        .type-card h3 {
+            color: #ffffff;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .type-card p {
+            color: #b0c4de;
+            font-size: 15px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .type-btn {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 12px 30px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.3s, color 0.3s;
+            text-transform: uppercase;
+        }
+
+        .type-btn:hover {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        /* Founder's Message Section */
+        .founder-section {
+            background-color: #ffffff;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .founder-title {
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .founder-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+            margin: 8px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        .founder-card {
+            max-width: 900px;
+            margin: 40px auto 0 auto;
+            background: var(--bg-light);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            text-align: left;
+            border-left: 6px solid var(--primary);
+        }
+
+        .founder-img-wrapper {
+            flex-shrink: 0;
+        }
+
+        .founder-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px solid white;
+            background-color: #eee;
+        }
+
+        .founder-content {
+            flex-grow: 1;
+        }
+
+        .founder-quote {
+            font-size: 17px;
+            color: var(--text-light);
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .founder-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Color Matching Marquee */
+        .marquee-container {
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 0;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .marquee-container marquee {
+            vertical-align: middle;
+        }
+
+        /* Big Premium Footer */
+        footer {
+            background: #0b1528;
+            color: #b0c4de;
+            padding: 80px 20px 30px 20px;
+            font-size: 15px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer-col h3 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 30px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+
+        .footer-col p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #b0c4de;
+            text-decoration: none;
+            transition: color 0.3s, padding-left 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .contact-icon {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 30px auto 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #718096;
+        }
+
+        /* --- Premium Website-Matched Modals --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 15, 35, 0.85); /* Dark blue tinted overlay */
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-content {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 850px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 15px 50px rgba(0, 210, 255, 0.1);
+            text-align: left;
+        }
+
+        .modal-content h2 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        .modal-content p {
+            color: #d0e0f5;
+            font-size: 15px;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .modal-list {
+            list-style-type: decimal;
+            padding-left: 20px;
+            color: #b0c4de;
+            font-size: 15px;
+        }
+
+        .modal-list li {
+            margin-bottom: 14px;
+            padding-left: 5px;
+            line-height: 1.6;
+        }
+
+        .modal-list li strong {
+            color: #ffffff;
+            font-size: 16px;
+            border-bottom: 1px dashed rgba(0, 210, 255, 0.3);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 32px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #6482a8;
+            line-height: 1;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: var(--accent);
+        }
+
+        /* Action buttons inside Modals */
+        .modal-action-btns {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .modal-btn {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-btn:hover {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .hero h1 { font-size: 36px; }
+            .hero p { font-size: 16px; }
+            .founder-card { flex-direction: column; text-align: center; padding: 30px 20px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
+            .modal-content { padding: 25px; }
+            .modal-action-btns { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">PRIME<span>WEB</span></a>
+            <ul class="nav-menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="about.html">About</a></li> <!-- Linked to about.html -->
+                <li><a href="service.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a onclick="openModal('termsModal')" style="cursor: pointer;">Terms & Conditions</a></li>
+                <li><a onclick="openModal('policyModal')" style="cursor: pointer;">Privacy Policy</a></li>
+                <li><a href="form.html" class="nav-btn">Get Started</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Premium Hero Section -->
+    <section class="hero">
+        <h1>WE DESIGN | WE DEVELOP | WE GROW</h1>
+        <p>Transforming business ideas into high-performing digital realities. Modern website architectures tailored for exponential growth.</p>
+        <a href="form.html" class="cta-btn">Get Started</a>
+    </section>
+
+    <!-- Professional Services Section -->
+    <section class="services" id="services">
+        <div class="section-header">
+            <h2>Our Tech Expertise</h2>
+            <p>High-end engineering solutions crafted with precision and modern design guidelines.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🌐</div>
+                <h3>Web Design</h3>
+                <p>Clean, creative, and highly engaging user interfaces optimized for ultimate user experience and brand value.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💻</div>
+                <h3>Web Development</h3>
+                <p>Robust frontend and backend architectures built with modern clean code methodologies for maximum speed and scale.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📈</div>
+                <h3>Digital Growth</h3>
+                <p>Strategic Search Engine Optimization (SEO) and tech integrations engineered to skyrocket conversion rates.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE PRIME WEB SECTION (With 3D Animation Style) -->
+    <section class="why-choose-section" id="why-choose">
+        <div class="section-header">
+            <h2>Why Choose Prime Web?</h2>
+            <p>We blend elite engineering structures with high-end aesthetic value to deliver unmatched performance.</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-card-icon">🚀</div>
+                <h3>Blazing Fast Performance</h3>
+                <p>We compile lightning-fast digital pipelines ensuring your user drop-off stays near zero percent.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-card-icon">🎯</div>
+                <h3>Conversion Engineering</h3>
+                <p>Every pixel and component structure is strategically laid out to convert standard visitors into paying corporate accounts.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-card-icon">🔒</div>
+                <h3>Ironclad Safety Frameworks</h3>
+                <p>High-security code practices protecting data infrastructure and maintaining perfect operations continuously.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-card-icon">🤝</div>
+                <h3>Elite Technical Support</h3>
+                <p>Continuous system audits, updates, and absolute alignment with modern global web standards.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TYPES OF WEBSITES SECTION (Website-Matched Premium Theme) -->
+    <section class="website-types-section" id="website-types">
+        <div class="section-header">
+            <h2>Types of Websites We Build</h2>
+            <p>Tailored digital solutions for every business need and industry.</p>
+        </div>
+        <div class="types-grid">
+            
+            <!-- Box 1 -->
+            <div class="type-card">
+                <div>
+                    <h3>E-Commerce</h3>
+                    <p>High-converting online stores built for seamless shopping experiences and secure payments.</p>
+                </div>
+                <button class="type-btn" onclick="openModal('ecommerceModal')">View Details</button>
+            </div>
+
+            <!-- Box 2 -->
+            <div class="type-card">
+                <div>
+                    <h3>Business / Corporate</h3>
+                    <p>Professional websites to establish your brand authority and attract B2B or B2C clients.</p>
+                </div>
+                <button class="type-btn" onclick="openModal('corporateModal')">View Details</button>
+            </div>
+
+            <!-- Box 3 -->
+            <div class="type-card">
+                <div>
+                    <h3>Educational / School</h3>
+                    <p>Comprehensive portals for schools and institutions to manage students, notices, and courses.</p>
+                </div>
+                <button class="type-btn" onclick="openModal('educationModal')">View Details</button>
+            </div>
+
+            <!-- Box 4 -->
+            <div class="type-card">
+                <div>
+                    <h3>Portfolio Site</h3>
+                    <p>Showcase your professional work, resume, and projects with a sleek, minimalist design.</p>
+                </div>
+                <button class="type-btn" onclick="openModal('portfolioModal')">View Details</button>
+            </div>
+
+            <!-- Box 5 -->
+            <div class="type-card">
+                <div>
+                    <h3>Blogs & Informational</h3>
+                    <p>Content-driven platforms designed for high readability, easy management, and maximum SEO impact.</p>
+                </div>
+                <button class="type-btn" onclick="openModal('blogModal')">View Details</button>
+            </div>
+
+            <!-- Box 6 -->
+            <div class="type-card">
+                <div>
+                    <h3>Landing Pages</h3>
+                    <p>Focused, single-page designs engineered specifically to maximize lead generation and brand impact.</p>
+                </div>
+                <button class="type-btn" onclick="openModal('landingModal')">View Details</button>
+            </div>
+
+        </div>
+    </section>
+
+   <!-- Founder's Message Section -->
+<section class="founder-section">
+    <h2 class="founder-title">Founder's Message</h2>
+    <div class="founder-card">
+        <div class="founder-img-wrapper">
+            <!-- Yahan src ko 'profile.jpg' kar diya gaya hai -->
+            <img src="profile.jpg" alt="Nikhil Sahu" class="founder-img" onerror="this.src='https://via.placeholder.com/180'">
+        </div>
+                   <div class="founder-content">
+                <p class="founder-quote">
+                    "Welcome to Prime Web. Our core philosophy is built around engineering clean, high-performance digital architectures that perfectly scale with your enterprise. We believe a website isn't just code; it's the strongest layout of your vision, tailored flawlessly to unlock actual business growth and continuous customer conversion."
+                </p>
+                <p class="founder-name">— Nikhil Sahu</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Color Matching Marquee Section -->
+    <div class="marquee-container">
+        <marquee behavior="scroll" direction="left" scrollamount="6">
+            🚀 PREMIUM WEB DESIGN &nbsp;&bull;&nbsp; MODERN FULL-STACK DEVELOPMENT &nbsp;&bull;&nbsp; CLEAN ARCHITECTURE &nbsp;&bull;&nbsp; CONVERSION OPTIMIZED SEO &nbsp;&bull;&nbsp; RELIABLE HOSTING & TECH SUPPORT &nbsp;&bull;&nbsp; TRANSFORM YOUR BRAND TODAY! 🚀
+        </marquee>
+    </div>
+
+    <!-- Big Premium Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="#" class="logo" style="color:white; display:block; margin-bottom:15px;">PRIME<span style="color:var(--accent);">WEB</span></a>
+                <p>We are a high-end web engineering agency dedicated to creating reliable, modern, and perfectly scalable digital ecosystems for companies worldwide.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="about.html">About</a></li> <!-- Linked to about.html in footer too -->
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Legal Policies</h3>
+                <ul>
+                    <li><a onclick="openModal('termsModal')" style="cursor:pointer;">Terms & Conditions</a></li>
+                    <li><a onclick="openModal('policyModal')" style="cursor:pointer;">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <ul class="contact-info">
+                    <li><span class="contact-icon">📍</span> Dehradun, Uttarakhand</li>
+                    <li><span class="contact-icon">📞</span> +91 9259540920</li>
+                    <li><span class="contact-icon">✉️</span> nikhilsahu12390@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Prime Web. All rights reserved.</p>
+            <p>Designed with ❤️ by Prime Web Team</p>
+        </div>
+    </footer>
+
+    <!-- ============================== -->
+    <!-- MODALS (POP-UPS) SECTION       -->
+    <!-- ============================== -->
+
+    <!-- TERMS & CONDITIONS MODAL -->
+    <div class="modal" id="termsModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('termsModal')">&times;</button>
+            <h2>TERMS & CONDITIONS</h2>
+            <ol class="modal-list">
+                <li><strong>Project Confirmation:</strong> The project is confirmed only upon signing the agreement and paying the 50% advance.</li>
+                <li><strong>Advance Payment:</strong> A 50% advance of the total project cost is mandatory.</li>
+                <li><strong>Final Payment:</strong> Remaining 50% must be paid immediately after website completion and before launch.</li>
+                <li><strong>Handover:</strong> Delivery will occur on the date mentioned in the agreement.</li>
+                <li><strong>Delay Charges:</strong> A holding charge of ₹200/day applies for unexplained handover or payment delays.</li>
+                <li><strong>Cancellation:</strong> Once the agreement is signed, the project cannot be cancelled. The 50% advance is non-refundable.</li>
+                <li><strong>Client Responsibilities:</strong> Logo, images, and text must be provided by the client in a timely manner.</li>
+                <li><strong>Delivery Extensions:</strong> Delays in content or approval by the client will extend the delivery date.</li>
+                <li><strong>Revisions:</strong> Only revisions mentioned in the agreement are free. Extra features incur additional charges.</li>
+                <li><strong>Additional Work:</strong> Modifications beyond the original scope are chargeable.</li>
+                <li><strong>Ownership:</strong> Source files and login credentials are provided only after 100% payment.</li>
+                <li><strong>Domain & Hosting:</strong> Costs for domain/hosting are the client's responsibility unless included in the package.</li>
+                <li><strong>Communication:</strong> Approval via WhatsApp, Email, or signed document is considered final.</li>
+                <li><strong>Acceptance:</strong> By signing, the client acknowledges and accepts all terms.</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- PRIVACY POLICY MODAL -->
+    <div class="modal" id="policyModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('policyModal')">&times;</button>
+            <h2>PRIVACY POLICY</h2>
+            <ol class="modal-list">
+                <li>No personal info will be shared with third parties without consent.</li>
+                <li>Clients are responsible for keeping their Login ID/Password secure.</li>
+                <li>Prime Web is not responsible for data loss due to server failure, cyber-attacks, or viruses.</li>
+                <li>Backups are the client's responsibility unless part of the agreement.</li>
+                <li>Clients are the legal owners of the content uploaded; Prime Web holds no liability for copyright violations.</li>
+                <li>Prime Web is not liable for downtime of third-party plugins or payment gateways.</li>
+                <li>Security is prioritized, but 100% security cannot be guaranteed over the internet.</li>
+                <li>Unauthorized changes by the client that damage the site will be fixed at an additional cost.</li>
+                <li>Maintenance is provided strictly per the agreement.</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 1. E-Commerce Modal -->
+    <div class="modal" id="ecommerceModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('ecommerceModal')">&times;</button>
+            <h2>E-Commerce Solution Architecture</h2>
+            <p>Our premium e-commerce setups are designed to convert visitors into loyal customers through modern engineering and robust sales infrastructure.</p>
+            <ol class="modal-list">
+                <li><strong>Dynamic Product Catalog Management:</strong> Easily add, categorize, and update infinite product listings.</li>
+                <li><strong>Secure Multi-Gateway Integration:</strong> Native hooks for seamless payments via UPI, Credit/Debit cards, and NetBanking.</li>
+                <li><strong>Advanced Cart & Checkout Flows:</strong> One-page fast checkout layout optimized to dramatically lower cart abandonment rates.</li>
+                <li><strong>Live Inventory Tracking Systems:</strong> Real-time automated stock deductions coupled with instant low-stock admin notifications.</li>
+                <li><strong>Customer Order Tracking Portals:</strong> Personalized user dashboards providing real-time tracking from dispatch to delivery.</li>
+                <li><strong>Coupon & Promotion Engine:</strong> Run targeted campaigns using customized flat rates, percentages, or buy-one-get-one offers.</li>
+                <li><strong>Automated Tax & Invoicing Frameworks:</strong> Instant dynamic PDF tax invoices generated and emailed upon successful completion.</li>
+                <li><strong>Product Feedback & Review Portals:</strong> Verified-purchase review workflows complete with media uploads and user star ratings.</li>
+                <li><strong>Intelligent Recommendation Systems:</strong> Dynamic cross-selling and up-selling layout grids based on trending user behavior.</li>
+                <li><strong>Comprehensive Sales Analytics Dashboard:</strong> Deep data analytics reporting on high-performing products, traffic loops, and revenue.</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 2. Corporate Modal -->
+    <div class="modal" id="corporateModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('corporateModal')">&times;</button>
+            <h2>Business & Corporate Platforms</h2>
+            <p>A high-performance corporate platform serves as your company's absolute digital authority, custom-tailored to pull high-ticket corporate accounts.</p>
+            <ol class="modal-list">
+                <li><strong>Premium Enterprise Branding Layouts:</strong> Visual components engineered strictly to amplify corporate identity and brand guidelines.</li>
+                <li><strong>Comprehensive Service Matrices:</strong> Deep layout structures clearly presenting specialized B2B solutions with interactive displays.</li>
+                <li><strong>Strategic Conversion Funnels:</strong> Lead capturing funnels positioned specifically to funnel prospective client consultations.</li>
+                <li><strong>Verified Case Studies Framework:</strong> Deep-dive portfolios showcasing enterprise problem-solving methodologies and verified project results.</li>
+                <li><strong>Client Testimonial Vaults:</strong> Interactive, trust-building sections highlighting signed statements from prominent past enterprises.</li>
+                <li><strong>Integrated Corporate Portals:</strong> HR systems containing dedicated job opening matrices and automated resume parsing pipelines.</li>
+                <li><strong>Multi-Branch Location Engineering:</strong> Interactive, multi-office map integrations pinpointing accurate physical office locations globally.</li>
+                <li><strong>Encrypted Customer Inquiry Forms:</strong> High-security inputs protecting sensitive corporate client inquiry data transmission.</li>
+                <li><strong>Press and Media Distribution Hubs:</strong> Centralized file architectures structured for simple corporate announcements and downloadable media kits.</li>
+                <li><strong>FAQ Accordion Infrastructure:</strong> Efficiently addresses common operational queries to remove friction prior to first corporate contact.</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 3. Education Modal -->
+    <div class="modal" id="educationModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('educationModal')">&times;</button>
+            <h2>Educational & Institution Portals</h2>
+            <p>Comprehensive, robust institutional web portals engineered to streamline administrative workflows and establish smooth interactive channels.</p>
+            <ol class="modal-list">
+                <li><strong>Digital Student Admission Pipelines:</strong> Digital processing from initial form fill to documentation attachment and approval verification.</li>
+                <li><strong>Dynamic Digital Notice Boards:</strong> Real-time admin panels to push instantaneous institutional alerts, timetables, and breaking declarations.</li>
+                <li><strong>Automated Institutional Calendars:</strong> Interactive schedules tracking institutional milestones, vacations, exams, and event routines.</li>
+                <li><strong>Detailed Course Curriculum Layouts:</strong> Granular breakdowns showcasing subject availability, class syllabi, and credit structures.</li>
+                <li><strong>Secure Student Marks Portal:</strong> Encrypted query databases enabling students or guardians to safely inspect performance charts.</li>
+                <li><strong>Online Fee Remittance Engines:</strong> Secure transaction tunnels processing mandatory academic dues with instant receipt printouts.</li>
+                <li><strong>Faculty Profile Directories:</strong> Comprehensive staff matrices documenting expert staff credentials, positions, and operational contact emails.</li>
+                <li><strong>Rich Multimedia Institution Galleries:</strong> Lightbox-enabled video and photo arrays displaying athletic achievements and structural capabilities.</li>
+                <li><strong>Parent-Teacher Interactive Interfaces:</strong> Dedicated appointment submission modules facilitating scheduled discussions with respective educators.</li>
+                <li><strong>Grievance and Feedback Systems:</strong> Confidential text processing systems collecting immediate constructive student/parent observations.</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 4. Portfolio Modal -->
+    <div class="modal" id="portfolioModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('portfolioModal')">&times;</button>
+            <h2>Premium Professional Portfolios</h2>
+            <p>A highly elegant creative showcase engineered explicitly as an interactive digital resume for elite specialists and independent consultants.</p>
+            <ol class="modal-list">
+                <li><strong>Sleek High-Impact Hero Layouts:</strong> Instant clarity on core professional capability immediately upon page rendering.</li>
+                <li><strong>Filterable High-Resolution Media Grids:</strong> Categorized display grids letting visitors seamlessly toggle between distinct project subsets.</li>
+                <li><strong>Visual Skill Mastery Displays:</strong> Interactive timeline markers or skill chips emphasizing true technical proficiency levels cleanly.</li>
+                <li><strong>Dynamic Case Study Frameworks:</strong> Dedicated structural spaces mapping out client challenges, engineering processes, and final project delivery.</li>
+                <li><strong>Integrated Scheduling Calendars:</strong> Live booking integrations (like Calendly) enabling clients to confirm consultations instantaneously.</li>
+                <li><strong>Downloadable Resume Vectors:</strong> Secure, isolated links triggering immediate file retrieval of physical professional profiles.</li>
+                <li><strong>Social Code Repository Connections:</strong> Automated links safely forwarding tech companies directly to active profiles like GitHub or LinkedIn.</li>
+                <li><strong>Endorsement Showcase Blocks:</strong> Prominent stylized quote displays organizing verified recommendation details from past employers.</li>
+                <li><strong>Ultra-Fast Single Page Layouts:</strong> Zero load lag, ensuring seamless navigation experiences for corporate recruiters.</li>
+                <li><strong>Instant Chat Channel Routing:</strong> Direct hooks bridging standard profile contact links smoothly with direct corporate messaging apps.</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 5. Blog Modal -->
+    <div class="modal" id="blogModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('blogModal')">&times;</button>
+            <h2>Content Hubs & Editorial Blogs</h2>
+            <p>High-readability digital ecosystems engineered from the ground up for maximum organic search dominance and effortless publication management.</p>
+            <ol class="modal-list">
+                <li><strong>Advanced Content Management Integration:</strong> Extremely intuitive admin dashboards for formatting, scheduling, and updating posts.</li>
+                <li><strong>Intelligent Text Search Mechanics:</strong> Instantaneous keyword scanning engines retrieving exact topic matches from massive historical databases.</li>
+                <li><strong>Immersive Typographic Readability Designs:</strong> Hand-picked font scales, line spacings, and contrast ratios built strictly for prolonged visual comfort.</li>
+                <li><strong>Advanced Comment Moderation Pipelines:</strong> Secure text interaction spaces utilizing anti-spam filters to preserve professional discourse.</li>
+                <li><strong>One-Click Social Sharing Hooks:</strong> Lightweight social button layouts prompting readers to distribute articles onto major professional channels.</li>
+                <li><strong>Newsletter Lead Aggregators:</strong> Strategically designed entry points capturing visitor emails to grow high-value subscriber lists.</li>
+                <li><strong>Deep Technical On-Page SEO Architecture:</strong> Automated structured schema generation, meta tags, and perfect XML sitemaps for Google positioning.</li>
+                <li><strong>Optimized Advertisement Blueprint Slots:</strong> Built-in structural blocks for frictionless deployment of monetization networks like AdSense.</li>
+                <li><strong>Smart Interlinked Post Suggestion:</strong> Contextual related-reading blocks deployed below text bodies to drive lower bounce metrics.</li>
+                <li><strong>Comprehensive Content Contributor Management:</strong> Multi-author profile spaces with granular operational role distribution (Admin, Author, Editor).</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 6. Landing Page Modal -->
+    <div class="modal" id="landingModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('landingModal')">&times;</button>
+            <h2>High-Conversion Landing Pages</h2>
+            <p>Single-focus conversion environments engineered specifically to channel marketing campaign traffic into direct, actionable business leads.</p>
+            <ol class="modal-list">
+                <li><strong>Laser-Focused Conversion Focus:</strong> Zero distracting secondary links, directing 100% of consumer attention to the core offer.</li>
+                <li><strong>Compelling Visual Headline Structure:</strong> Premium typography grids presenting value propositions clearly within 3 seconds of load time.</li>
+                <li><strong>Strategically Positioned CTA Targets:</strong> High-contrast action triggers deployed methodically across critical scroll points.</li>
+                <li><strong>Ultra-Lightweight Lead Capturing Forms:</strong> Input fields stripped down to essential variables to remove user resistance.</li>
+                <li><strong>Instant Mobile Interface Matching:</strong> Dynamic layout formatting guaranteeing smooth processing over handheld smartphones.</li>
+                <li><strong>Integrated Trust Signals:</strong> Stylized modules emphasizing security badges, partner company logos, and immediate safety claims.</li>
+                <li><strong>Abridged Friction-Reduction FAQs:</strong> Immediate expandable toggles answers common objections before user hesitation builds.</li>
+                <li><strong>Rapid Asset Delivery Optimization:</strong> Asset code optimization generating near-instantaneous load responses under low mobile network coverage.</li>
+                <li><strong>Embedded Explainer Video Containers:</strong> Highly optimized media slots encouraging immediate interactions via clean video integrations.</li>
+                <li><strong>Adaptive Architectural Pathways:</strong> Choose between fast static layouts or rich dynamic models based on specific project scope.</li>
+            </ol>
+            
+            <div class="modal-action-btns">
+                <button class="modal-btn" onclick="openModal('staticModal'); closeModal('landingModal');">Static Architecture</button>
+                <button class="modal-btn" onclick="openModal('dynamicModal'); closeModal('landingModal');">Dynamic Architecture</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sub-Modal: Static Website -->
+    <div class="modal" id="staticModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('staticModal')">&times;</button>
+            <h2>Static Web Architecture</h2>
+            <p>Pre-rendered static files compiled straight into ultra-fast deliverables, maximizing efficiency and absolute infrastructure security.</p>
+            <ol class="modal-list">
+                <li><strong>Blazing Fast Rendering Speeds:</strong> Zero server-side calculation requirements mean pages open near-instantly for users.</li>
+                <li><strong>Absolute Security Profiles:</strong> Lacks runtime execution environments or database inputs, eliminating vulnerability vectors.</li>
+                <li><strong>Near-Zero Hosting Overhead Costs:</strong> Seamlessly deploys onto free tier edge clouds like GitHub Pages, Vercel, or Netlify.</li>
+                <li><strong>Impenetrable Traffic Scale Processing:</strong> Effortlessly absorbs sudden millions of visitors without database collapse failures.</li>
+                <li><strong>Simplified Preservation Routines:</strong> Complete backups consist simply of archiving original hard-coded site script directories.</li>
+                <li><strong>Minimal Long-Term Code Degradation:</strong> No active structural code integrations to continuously maintain or continuously troubleshoot.</li>
+                <li><strong>Extremely Clean Technical Search Crawls:</strong> Lightweight structures that crawlers inspect and rank easily without rendering lag.</li>
+                <li><strong>Zero Runtime Processing Errors:</strong> Completely bypasses typical server-side connection issues or database timeout crashes.</li>
+                <li><strong>Flawless Visual Consistency:</strong> Renders identical typography and component alignment precisely for every single internet user.</li>
+                <li><strong>Optimal for Foundational Profiles:</strong> Ideal framework choice for marketing pages, digital resumes, and brochures.</li>
+            </ol>
+            <button class="modal-btn" style="margin-top: 15px;" onclick="openModal('landingModal'); closeModal('staticModal');">&larr; Back to Landing Pages</button>
+        </div>
+    </div>
+
+    <!-- Sub-Modal: Dynamic Website -->
+    <div class="modal" id="dynamicModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('dynamicModal')">&times;</button>
+            <h2>Dynamic Web Architecture</h2>
+            <p>Data-driven, real-time software systems engineered to deliver deeply interactive, evolving, and customized user realities.</p>
+            <ol class="modal-list">
+                <li><strong>Real-Time Database Connectivity:</strong> Seamless communication pipelines linking interfaces directly with relational or non-relational databases.</li>
+                <li><strong>Personalized User Profiles:</strong> Custom member portals with secure login protocols, preferences tracking, and history logs.</li>
+                <li><strong>Live Contextual Filtering Modules:</strong> Instant data searching, grouping, and pagination processing without reloading structural pages.</li>
+                <li><strong>Granular Admin Control Dashboards:</strong> Complete administrative power to alter content blocks instantly without looking at raw code files.</li>
+                <li><strong>Automated Data Integration Cycles:</strong> Instantly fetch exterior global data streams using structured API microservices hooks.</li>
+                <li><strong>Interactive User Interaction Capabilities:</strong> Direct processing loops enabling file attachments, forum entries, and live data entries.</li>
+                <li><strong>Evolving Interface Visuals:</strong> Layout parameters adapt automatically based on time variables, user regions, or device parameters.</li>
+                <li><strong>Secure Role Access Management:</strong> Hardened security logic defining varied administrative access ranks (Admin, Editor, Subscriber).</li>
+                <li><strong>Scalable Functionality Extensions:</strong> Built on modular architectures that accept vast operational upgrades smoothly over time.</li>
+                <li><strong>Optimal for Interactive Enterprises:</strong> Essential framework for web software, modern booking tools, and massive global platforms.</li>
+            </ol>
+            <button class="modal-btn" style="margin-top: 15px;" onclick="openModal('landingModal'); closeModal('dynamicModal');">&larr; Back to Landing Pages</button>
+        </div>
+    </div>
+
+    <!-- JavaScript for Interactive Controls -->
+    <script>
+        // Universal function to open any modal by ID
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        // Universal function to close any modal by ID
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modal if user clicks outside the modal content box
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>

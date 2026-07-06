@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services Matrix | Prime Web - Elite Engineering</title>
+    <style>
+        /* Core System Architecture Variables */
+        :root {
+            --dark-bg: #071324;       
+            --dark-card: #10213a;     
+            --dark-border: rgba(0, 210, 255, 0.2); 
+            --accent: #00d2ff;
+            --accent-purple: #9d4edd;
+            --primary: #002d62;
+            --text-muted: #b0c4de;
+            --neon-glow: 0 0 20px rgba(0, 210, 255, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Top Bar Navigation Alignment */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            background: rgba(7, 19, 36, 0.95);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+            z-index: 1000;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--dark-border);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #b0c4de;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 15px;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent);
+        }
+
+        .nav-btn {
+            background: var(--primary);
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600 !important;
+            border: 1px solid var(--accent);
+            transition: all 0.3s !important;
+        }
+
+        .nav-btn:hover {
+            background: var(--accent);
+            color: var(--primary) !important;
+            box-shadow: var(--neon-glow);
+        }
+
+        /* Hero System Interface */
+        .services-hero {
+            padding: 200px 20px 100px 20px;
+            text-align: center;
+            background: radial-gradient(circle at 50% 30%, #0d264a 0%, #071324 70%);
+            position: relative;
+        }
+
+        .services-hero h1 {
+            font-size: 64px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #ffffff 20%, var(--accent) 70%, var(--accent-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 25px;
+        }
+
+        .services-hero p {
+            font-size: 21px;
+            color: var(--text-muted);
+            max-width: 850px;
+            margin: 0 auto 40px auto;
+        }
+
+        /* Infinite Motion Marquee Architecture */
+        .marquee-container {
+            background: #040d1a;
+            border-top: 1px solid var(--dark-border);
+            border-bottom: 1px solid var(--dark-border);
+            padding: 20px 0;
+            overflow: hidden;
+            width: 100%;
+            display: flex;
+            position: relative;
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: infiniteScroll 30s linear infinite;
+        }
+
+        .marquee-item {
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.4);
+            padding: 0 50px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            white-space: nowrap;
+        }
+
+        .marquee-item span {
+            color: var(--accent);
+        }
+
+        @keyframes infiniteScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Section Global Spacing */
+        .section-layout {
+            padding: 120px 20px;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 17px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Advanced 3D Tilt Matrix Grid */
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            perspective: 2000px; /* Highly sensitive 3D field */
+        }
+
+        .matrix-card {
+            background: linear-gradient(135deg, #10213a 0%, #091526 100%);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 50px 40px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .matrix-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 30px rgba(0,210,255,0.1);
+        }
+
+        .card-depth-icon {
+            font-size: 50px;
+            margin-bottom: 30px;
+            transform: translateZ(50px); /* Deep 3D separation */
+            display: inline-block;
+        }
+
+        .matrix-card h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #ffffff;
+            transform: translateZ(40px);
+        }
+
+        .matrix-card p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 35px;
+            transform: translateZ(30px);
+        }
+
+        /* Tactical Activation Interactive Trigger Buttons */
+        .trigger-btn {
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 14px 28px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+            transform: translateZ(40px);
+        }
+
+        .matrix-card:hover .trigger-btn {
+            background: var(--accent);
+            color: var(--dark-bg);
+            border-color: var(--accent);
+            box-shadow: var(--neon-glow);
+        }
+
+        /* Architectural Capabilities Deployment Matrix */
+        .deep-dive-section {
+            background: #040d1a;
+            border-top: 1px solid rgba(255,255,255,0.03);
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .dive-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .dive-content h3 {
+            font-size: 36px;
+            margin-bottom: 25px;
+            background: linear-gradient(90deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .dive-content p {
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .capability-accordion {
+            background: var(--dark-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 24px;
+            font-weight: 700;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.01);
+            transition: background 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: rgba(0, 210, 255, 0.05);
+        }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+            padding: 0 24px;
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        .accordion-accordion-active .accordion-body {
+            max-height: 1000px;
+            padding: 10px 24px 24px 24px;
+            border-top: 1px solid rgba(255,255,255,0.03);
+        }
+
+        /* POP-UP TYPE 1: Immersive Center Matrix Overlays */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(4, 13, 26, 0.92);
+            backdrop-filter: blur(15px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-box {
+            background: #0b182b;
+            border: 1px solid var(--accent);
+            box-shadow: 0 0 50px rgba(0, 210, 255, 0.2);
+            width: 90%;
+            max-width: 800px;
+            border-radius: 20px;
+            padding: 50px;
+            position: relative;
+            transform: translateY(30px) scale(0.95);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .modal-overlay.active { display: flex; }
+        .modal-overlay.active .modal-box { transform: translateY(0) scale(1); }
+
+        /* POP-UP TYPE 2: Right Hand Tactical Control Drawers */
+        .drawer-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(4, 13, 26, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            justify-content: flex-end;
+        }
+
+        .drawer-box {
+            background: #0d1f38;
+            border-left: 1px solid var(--dark-border);
+            width: 100%;
+            max-width: 550px;
+            height: 100%;
+            padding: 60px 45px;
+            position: relative;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            overflow-y: auto;
+        }
+
+        .drawer-overlay.active { display: flex; }
+        .drawer-overlay.active .drawer-box { transform: translateX(0); }
+
+        /* Pop-up Generic Structural Typography */
+        .popup-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding-bottom: 15px;
+        }
+
+        .popup-tag {
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+
+        .popup-list {
+            list-style: none;
+            margin-top: 25px;
+        }
+
+        .popup-list li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 20px;
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+
+        .popup-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0; top: -2px;
+            color: var(--accent);
+            font-weight: 900;
+            font-size: 18px;
+        }
+
+        .close-action {
+            position: absolute;
+            top: 30px; right: 30px;
+            background: none;
+            border: none;
+            color: #64748b;
+            font-size: 36px;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.3s;
+        }
+
+        .close-action:hover { color: #ffffff; }
+
+        /* Enterprise Execution Footer Alignment */
+        footer {
+            background: #040d1a;
+            color: #b0c4de;
+            padding: 80px 20px 30px 20px;
+            font-size: 15px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-grid {
+            max-width: 1400px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 50px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-col h3 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -8px;
+            width: 30px; height: 2px;
+            background-color: var(--accent);
+        }
+
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a {
+            color: #b0c4de;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 30px auto 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        /* Screen Scaling Grid Overrides */
+        @media (max-width: 1200px) {
+            .dive-layout { grid-template-columns: 1fr; gap: 50px; }
+        }
+
+        @media (max-width: 992px) {
+            .matrix-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .services-hero h1 { font-size: 42px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation Container -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">PRIME<span>WEB</span></a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="service.html" style="color: var(--accent);">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="form.html" class="nav-btn">Get Started</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Services Core Hero System -->
+    <section class="services-hero">
+        <h1>High-Performance Web Solutions</h1>
+        <p>Explore our deep architecture matrix. We build bulletproof web frameworks engineered specifically for extreme speeds, uncompromised safety, and ultimate user scale.</p>
+    </section>
+
+    <!-- Motion Marquee Track System -->
+    <div class="marquee-container">
+        <div class="marquee-track">
+            <div class="marquee-item">⚡ ENTERPRISE FULLSTACK</div>
+            <div class="marquee-item"><span>•</span> NEXT.JS CORE PIPELINES</div>
+            <div class="marquee-item"><span>•</span> WEBGL 3D INTERACTION LAB</div>
+            <div class="marquee-item"><span>•</span> ADVANCED SECURE FORMS</div>
+            <div class="marquee-item"><span>•</span> HYPER OPTIMIZATION ENGINE</div>
+            <div class="marquee-item"><span>•</span> RADIAL DATA SYSTEMS</div>
+            <!-- Duplicate Track for Seamless Loop Execution -->
+            <div class="marquee-item">⚡ ENTERPRISE FULLSTACK</div>
+            <div class="marquee-item"><span>•</span> NEXT.JS CORE PIPELINES</div>
+            <div class="marquee-item"><span>•</span> WEBGL 3D INTERACTION LAB</div>
+            <div class="marquee-item"><span>•</span> ADVANCED SECURE FORMS</div>
+            <div class="marquee-item"><span>•</span> HYPER OPTIMIZATION ENGINE</div>
+            <div class="marquee-item"><span>•</span> RADIAL DATA SYSTEMS</div>
+        </div>
+    </div>
+
+    <!-- 3D Card Architecture Grid Section -->
+    <section class="section-layout">
+        <div class="section-header">
+            <h2>Our Core Engineering Vectors</h2>
+            <p>Move your cursor across the cards to preview the interactive 3D displacement matrix.</p>
+        </div>
+
+        <div class="matrix-grid">
+
+            <!-- Card 1: Custom Web Infrastructures -->
+            <div class="matrix-card" onmousemove="processTilt(event, this)" onmouseleave="resetTilt(this)">
+                <div class="card-depth-icon">🚀</div>
+                <h3>Custom Web Applications</h3>
+                <p>We craft pristine full-stack architectures built with Next.js and custom vanilla layers. Designed for fast load times and seamless operations under stress.</p>
+                <button class="trigger-btn" onclick="togglePopup('modalApp')">Initialize Audit ➔</button>
+            </div>
+
+            <!-- Card 2: Next-Gen E-Commerce -->
+            <div class="matrix-card" onmousemove="processTilt(event, this)" onmouseleave="resetTilt(this)">
+                <div class="card-depth-icon">💼</div>
+                <h3>E-Commerce Ecosystems</h3>
+                <p>High-conversion storefront infrastructure wired with lightning-fast checkout APIs, dynamic stock metrics, and multi-layered gateway modules.</p>
+                <button class="trigger-btn" onclick="togglePopup('drawerCommerce')">Deploy Drawer ➔</button>
+            </div>
+
+            <!-- Card 3: Immersive 3D Experience Designs -->
+            <div class="matrix-card" onmousemove="processTilt(event, this)" onmouseleave="resetTilt(this)">
+                <div class="card-depth-icon">📐</div>
+                <h3>3D & Immersive Interaction</h3>
+                <p>Bespoke interactive layers using customized canvas nodes, scroll-bound parallax, and lightweight mathematical motion styling that captivates traffic.</p>
+                <button class="trigger-btn" onclick="togglePopup('modal3D')">Initialize Audit ➔</button>
+            </div>
+
+            <!-- Card 4: Hardened Security Implementations -->
+            <div class="matrix-card" onmousemove="processTilt(event, this)" onmouseleave="resetTilt(this)">
+                <div class="card-depth-icon">🛡️</div>
+                <h3>Enterprise Security & Optimization</h3>
+                <p>Comprehensive layout hardening that screens out malicious injection scripts while shrinking script footprints to cross instantaneous rendering marks.</p>
+                <button class="trigger-btn" onclick="togglePopup('drawerSecurity')">Deploy Drawer ➔</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Deep Dive Technical Pipeline Sub-System -->
+    <section class="section-layout deep-dive-section">
+        <div class="dive-layout">
+            <div class="dive-content">
+                <h3>Our System Engineering Pipeline</h3>
+                <p>We do not operate on loose guesswork. Every architectural project assigned to Prime Web follows an exact multi-tiered deployment blueprint mapped for precision performance metrics.</p>
+                <p>From deep structural wireframing loops to modern serverless edge node configuration, we build cleanly to isolate code issues before launch.</p>
+            </div>
+
+            <div>
+                <!-- Accordion Node 1 -->
+                <div class="capability-accordion" onclick="toggleAccordion(this)">
+                    <div class="accordion-header">
+                        <span>Phase 1: Deep Matrix Architectural Auditing</span>
+                        <span>+</span>
+                    </div>
+                    <div class="accordion-body">
+                        We map the absolute requirements of your business layout, analyzing system loads, identifying server choke points, and designing data routes beforehand to secure maximum asset deployment capacity.
+                    </div>
+                </div>
+
+                <!-- Accordion Node 2 -->
+                <div class="capability-accordion" onclick="toggleAccordion(this)">
+                    <div class="accordion-header">
+                        <span>Phase 2: Full-Stack Codebase Assembly</span>
+                        <span>+</span>
+                    </div>
+                    <div class="accordion-body">
+                        Our engineering core assembles clean semantic blocks, excluding dependency bloat, implementing unified CSS variable trees, and executing clean asynchronous processing loops.
+                    </div>
+                </div>
+
+                <!-- Accordion Node 3 -->
+                <div class="capability-accordion" onclick="toggleAccordion(this)">
+                    <div class="accordion-header">
+                        <span>Phase 3: Automated Quality Audits</span>
+                        <span>+</span>
+                    </div>
+                    <div class="accordion-body">
+                        Before deployment signals transition to production paths, the build matrix undergoes comprehensive responsiveness tests and localized processing analysis to protect server consistency.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- POP-UP SYSTEM INFRASTRUCTURE -->
+
+    <!-- Pop-up 1: Custom Web App (Center Modal) -->
+    <div class="modal-overlay" id="modalApp">
+        <div class="modal-box">
+            <button class="close-action" onclick="togglePopup('modalApp')">&times;</button>
+            <span class="popup-tag">Core Blueprint Specification</span>
+            <h2 class="popup-title">Custom Application Matrix</h2>
+            <p>Our custom software applications discard generic design patterns to deliver raw mechanical efficiency directly to your active browser instances.</p>
+            <ul class="popup-list">
+                <li><strong>State Memory Pools:</strong> Smooth global variable sync tracking across active application panels without layout crashes.</li>
+                <li><strong>Isomorphic Framework Stacks:</strong> Direct execution paths managing lightning-fast rendering states seamlessly.</li>
+                <li><strong>Decoupled Control Points:</strong> Isolated script models enabling developers to modify server hooks cleanly without structural side effects.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Pop-up 2: E-Commerce Ecosystems (Right Hand Side Drawer) -->
+    <div class="drawer-overlay" id="drawerCommerce">
+        <div class="drawer-box">
+            <button class="close-action" onclick="togglePopup('drawerCommerce')">&times;</button>
+            <span class="popup-tag">Transaction Engineering</span>
+            <h2 class="popup-title">Commerce Engine Layers</h2>
+            <p>Standard e-commerce frameworks experience substantial cart abandonment rates due to core script lag. We isolate and eliminate processing friction entirely.</p>
+            <ul class="popup-list">
+                <li><strong>Sub-Millisecond Dynamic Filters:</strong> Process hundreds of database storage attributes without waiting for standard page reloads.</li>
+                <li><strong>Wired API Secure Vaults:</strong> Fast payment handshake systems keeping transaction routes direct and free from exterior interference.</li>
+                <li><strong>Localized Client Geofencing:</strong> Serve assets automatically from nearest geographic content delivery systems.</li>
+                <li><strong>Automated Stock Webhooks:</strong> Instantly mirror store volume across shipping sheets without database delay loops.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Pop-up 3: Immersive 3D Experience (Center Modal) -->
+    <div class="modal-overlay" id="modal3D">
+        <div class="modal-box">
+            <button class="close-action" onclick="togglePopup('modal3D')">&times;</button>
+            <span class="popup-tag">Interaction Laboratory</span>
+            <h2 class="popup-title">WebGL & Motion Systems</h2>
+            <p>Static websites struggle to command consistent modern focus. Our immersive graphics pipelines engage tracking systems to scale user attention spans dramatically.</p>
+            <ul class="popup-list">
+                <li><strong>Mathematical Curve Arrays:</strong> Physics-based visual transitions keeping scroll tracking highly realistic and intuitive.</li>
+                <li><strong>GPU-Accelerated Drawing Nodes:</strong> Direct graphic pipelines processing heavy canvas visuals smoothly on modern smart screens.</li>
+                <li><strong>Zero-Bloat Layout Packages:</strong> Customized asset delivery reducing baseline processing wait times down to bare minimum targets.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Pop-up 4: Security Hardware (Right Hand Side Drawer) -->
+    <div class="drawer-overlay" id="drawerSecurity">
+        <div class="drawer-box">
+            <button class="close-action" onclick="togglePopup('drawerSecurity')">&times;</button>
+            <span class="popup-tag">Structural System Shield</span>
+            <h2 class="popup-title">Optimization Specs</h2>
+            <p>Ensure backend operations stay completely out of reach of automated malicious web sniffers and scrapers while maintaining perfect operation scores.</p>
+            <ul class="popup-list">
+                <li><strong>Input Query Sanitizers:</strong> Neutralize embedded client-side script code within active terminal text forms immediately.</li>
+                <li><strong>Strict CSP Architecture Rules:</strong> Block unexpected exterior scripts from executing inside your verified user instances.</li>
+                <li><strong>Granular Code Bundling:</strong> Slice heavy script modules into fine, hyper-efficient assets that load only when explicitly called.</li>
+                <li><strong>Asset Delivery Audits:</strong> Keep core operational code performance at perfect ranking metrics 24/7/365.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Enterprise Execution Footer Alignment -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="index.html" class="logo" style="display:block; margin-bottom:15px;">PRIME<span>WEB</span></a>
+                <p>We are a high-end web engineering agency dedicated to creating reliable, modern, and perfectly scalable digital ecosystems for companies worldwide.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>System Architecture</h3>
+                <ul>
+                    <li><a onclick="togglePopup('modalApp')" style="cursor:pointer;">Web Applications</a></li>
+                    <li><a onclick="togglePopup('drawerCommerce')" style="cursor:pointer;">E-Commerce Engine</a></li>
+                    <li><a onclick="togglePopup('modal3D')" style="cursor:pointer;">WebGL Immersive Lab</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <ul style="color:#b0c4de;">
+                    <li style="margin-bottom:12px;">📍 Dehradun, Uttarakhand</li>
+                    <li style="margin-bottom:12px;">📞 +91 9259540920</li>
+                    <li style="margin-bottom:12px;">✉️ nikhilsahu12390@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Prime Web. All rights reserved.</p>
+            <p>Designed with ❤️ by Prime Web Team</p>
+        </div>
+    </footer>
+
+    <!-- Core Interactive JavaScript Engine -->
+    <script>
+        // High-Precision Mathematical 3D Card Tilt Engine
+        function processTilt(event, card) {
+            const boundary = card.getBoundingClientRect();
+            const width = boundary.width;
+            const height = boundary.height;
+            
+            // Determine cursor coordinates relative to card midpoints
+            const mouseX = event.clientX - boundary.left - (width / 2);
+            const mouseY = event.clientY - boundary.top - (height / 2);
+            
+            // Calculate rotational displacement values (Max tilt limit set to 12 degrees)
+            const rotationX = ((mouseY / height) * -12).toFixed(2);
+            const rotationY = ((mouseX / width) * 12).toFixed(2);
+            
+            // Execute 3D matrix transformation string
+            card.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg) translateY(-5px)`;
+        }
+
+        function resetTilt(card) {
+            // Restore neutral placement values on cursor departure
+            card.style.transform = `rotateX(0deg) rotateY(0deg) translateY(0px)`;
+        }
+
+        // Omni-Channel Pop-up Controller Engine (Modals & Drawers)
+        function togglePopup(elementId) {
+            const target = document.getElementById(elementId);
+            if (target.classList.contains('active')) {
+                target.classList.remove('active');
+                document.body.style.overflow = 'auto'; // Re-engage background scrolling vectors
+            } else {
+                target.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Freeze viewport shifts during interaction
+            }
+        }
+
+        // Close Pop-ups automatically if user interacts with outer overlay spaces
+        window.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal-overlay') || e.target.classList.contains('drawer-overlay')) {
+                e.target.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Pipeline Structural Accordion Engine
+        function toggleAccordion(wrapper) {
+            // Check if current block is already deployed
+            const isDeployed = wrapper.classList.contains('accordion-accordion-active');
+            
+            // Shut all active layout expansions nearby to maintain alignment
+            document.querySelectorAll('.capability-accordion').forEach(node => {
+                node.classList.remove('accordion-accordion-active');
+                node.querySelector('.accordion-header span:last-child').textContent = '+';
+            });
+
+            if (!isDeployed) {
+                wrapper.classList.add('accordion-accordion-active');
+                wrapper.querySelector('.accordion-header span:last-child').textContent = '−';
+            }
+        }
+    </script>
+</body>
+</html>

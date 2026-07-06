@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Web - Client Form</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; background-color: #f9f9f9; padding: 20px; }
+        .form-container { max-width: 800px; margin: auto; background: white; padding: 40px; border: 3px solid #002d62; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .header { border-bottom: 2px solid #002d62; padding-bottom: 15px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: flex-end; }
+        .header h1 { color: #002d62; margin: 0; font-size: 28px; }
+        .header p { margin: 0; color: #555; font-size: 14px; }
+        .header-right { text-align: right; font-size: 12px; }
+        
+        .section-title { background: #f0f0f0; padding: 8px; margin: 20px 0; font-weight: bold; color: #333; border-left: 5px solid #002d62; }
+        .form-row { display: flex; gap: 20px; margin-bottom: 15px; }
+        .form-group { flex: 1; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 14px; }
+        input[type="text"], input[type="email"], textarea { width: 100%; padding: 10px; border: 1px solid #ccc; box-sizing: border-box; }
+        textarea { height: 120px; }
+        
+        /* QR Code Styling */
+        .qr-container { text-align: center; margin-bottom: 20px; padding: 15px; background: #fdfdfd; border: 1px dashed #002d62; border-radius: 4px; }
+        .qr-image { max-width: 180px; width: 100%; height: auto; display: block; margin: 10px auto 0 auto; border: 1px solid #ccc; padding: 5px; background: #fff; }
+
+        /* Styled Note Text */
+        .form-note { font-size: 13.5px; color: #555; margin-top: 25px; text-align: center; line-height: 1.5; }
+        .form-note strong { color: #d32f2f; } 
+        .form-note a { color: #002d62; font-weight: bold; text-decoration: underline; cursor: pointer; }
+        
+        button { background: #002d62; color: white; padding: 15px; border: none; cursor: pointer; width: 100%; font-size: 18px; font-weight: bold; margin-top: 15px; }
+        button:hover { background: #004a99; }
+
+        /* --- Popup (Modal) Styles --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.4);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-content {
+            background: white;
+            padding: 45px;
+            border-radius: 12px;
+            max-width: 750px;
+            width: 90%;
+            max-height: 75vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            text-align: left;
+            border: 1px solid #e2e8f0;
+        }
+
+        .modal-content h2 {
+            color: #002d62;
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 14px;
+            letter-spacing: -0.5px;
+        }
+
+        .modal-list {
+            list-style-type: decimal;
+            padding-left: 20px;
+            color: #555;
+            font-size: 14.5px;
+        }
+
+        .modal-list li {
+            margin-bottom: 14px;
+            padding-left: 5px;
+            line-height: 1.6;
+        }
+
+        .modal-list li strong {
+            color: #333;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #94a3b8;
+            transition: color 0.2s ease;
+        }
+
+        .close-btn:hover {
+            color: #002d62;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <div class="header">
+        <div>
+            <h1>PRIME WEB</h1>
+            <p>WE DESIGN | WE DEVELOP | WE GROW</p>
+        </div>
+        <div class="header-right">
+            <strong>Nikhil Sahu</strong><br>
+            Ph: 9259540920<br>
+            Email: nikhilsahu12390@gmail.com
+        </div>
+    </div>
+
+    <form id="primeWebForm">
+        <!-- CLIENT DETAILS -->
+        <div class="section-title">CLIENT DETAILS</div>
+        <div class="form-row">
+            <div class="form-group"><label>Full Name:</label><input type="text" name="fullName" required></div>
+            <div class="form-group"><label>Date:</label><input type="text" name="date" placeholder="DD/MM/YYYY"></div>
+        </div>
+        <div class="form-group"><label>Business Name:</label><input type="text" name="businessName"></div>
+        <div class="form-group"><label>Address:</label><input type="text" name="address"></div>
+        <div class="form-row">
+            <div class="form-group"><label>Contact No.:</label><input type="text" name="contactNo"></div>
+            <div class="form-group"><label>Email ID:</label><input type="email" name="email"></div>
+        </div>
+
+        <!-- WEBSITE & TECH DETAILS -->
+        <div class="section-title">WEBSITE & TECH DETAILS</div>
+        <div class="form-row">
+            <div class="form-group"><label>Domain Name:</label><input type="text" name="domainName"></div>
+            <div class="form-group"><label>Hosting:</label><input type="text" name="hosting"></div>
+        </div>
+        <div class="form-group"><label>Required Pages/Features:</label><textarea name="features"></textarea></div>
+
+        <!-- PAYMENT DETAILS -->
+        <div class="section-title">PAYMENT DETAILS</div>
+        
+        <!-- QR Code Section -->
+        <div class="qr-container">
+            <label>Scan QR Code to Pay:</label>
+            <img src="qr.jpg" alt="Payment QR Code" class="qr-image" onerror="this.src='https://via.placeholder.com/180?text=QR+Code+Missing'">
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Amount Paid (₹):</label>
+                <input type="text" name="amount" placeholder="Enter amount paid" required>
+            </div>
+            <div class="form-group">
+                <label>Transaction ID / Reference No.:</label>
+                <input type="text" name="transactionId" placeholder="Enter payment transaction ID" required>
+            </div>
+        </div>
+
+        <!-- Important User Note (Triggers Modals) -->
+        <div class="form-note">
+            <strong>Note:</strong> Ek baar form fill karne se pehle <a onclick="openModal('termsModal')">Terms and Condition</a> aur <a onclick="openModal('policyModal')">Privacy Policy</a> padh lo.
+        </div>
+
+        <button type="submit">SUBMIT DETAILS</button>
+    </form>
+</div>
+
+<!-- TERMS & CONDITIONS MODAL -->
+<div class="modal" id="termsModal">
+    <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('termsModal')">&times;</button>
+        <h2>TERMS & CONDITIONS</h2>
+        <ol class="modal-list">
+            <li><strong>Project Confirmation:</strong> The project is confirmed only upon signing the agreement and paying the 50% advance.</li>
+            <li><strong>Advance Payment:</strong> A 50% advance of the total project cost is mandatory.</li>
+            <li><strong>Final Payment:</strong> Remaining 50% must be paid immediately after website completion and before launch.</li>
+            <li><strong>Handover:</strong> Delivery will occur on the date mentioned in the agreement.</li>
+            <li><strong>Delay Charges:</strong> A holding charge of ₹200/day applies for unexplained handover or payment delays.</li>
+            <li><strong>Cancellation:</strong> Once the agreement is signed, the project cannot be cancelled. The 50% advance is non-refundable.</li>
+            <li><strong>Client Responsibilities:</strong> Logo, images, and text must be provided by the client in a timely manner.</li>
+            <li><strong>Delivery Extensions:</strong> Delays in content or approval by the client will extend the delivery date.</li>
+            <li><strong>Revisions:</strong> Only revisions mentioned in the agreement are free. Extra features incur additional charges.</li>
+            <li><strong>Additional Work:</strong> Modifications beyond the original scope are chargeable.</li>
+            <li><strong>Ownership:</strong> Source files and login credentials are provided only after 100% payment.</li>
+            <li><strong>Domain & Hosting:</strong> Costs for domain/hosting are the client's responsibility unless included in the package.</li>
+            <li><strong>Communication:</strong> Approval via WhatsApp, Email, or signed document is considered final.</li>
+            <li><strong>Acceptance:</strong> By signing, the client acknowledges and accepts all terms.</li>
+        </ol>
+    </div>
+</div>
+
+<!-- PRIVACY POLICY MODAL -->
+<div class="modal" id="policyModal">
+    <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('policyModal')">&times;</button>
+        <h2>PRIVACY POLICY</h2>
+        <ol class="modal-list">
+            <li>No personal info will be shared with third parties without consent.</li>
+            <li>Clients are responsible for keeping their Login ID/Password secure.</li>
+            <li>Prime Web is not responsible for data loss due to server failure, cyber-attacks, or viruses.</li>
+            <li>Backups are the client's responsibility unless part of the agreement.</li>
+            <li>Clients are the legal owners of the content uploaded; Prime Web holds no liability for copyright violations.</li>
+            <li>Prime Web is not liable for downtime of third-party plugins or payment gateways.</li>
+            <li>Security is prioritized, but 100% security cannot be guaranteed over the internet.</li>
+            <li>Unauthorized changes by the client that damage the site will be fixed at an additional cost.</li>
+            <li>Maintenance is provided strictly per the agreement.</li>
+        </ol>
+    </div>
+</div>
+
+<!-- JavaScript for Interactive Controls & Google Sheet Database -->
+<script>
+    // Modals Control Functions
+    function openModal(modalId) {
+        document.getElementById(modalId).style.display = 'flex';
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+    }
+
+    // Modal ke baahar click karne par close ho jaye
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+            event.target.style.display = 'none';
+        }
+    }
+
+    // --- GOOGLE SHEET INTEGRATION CODE ---
+    // TODO: Niche waali link ki jagah apni copied Web App URL daalein
+    const scriptURL = 'https://script.google.com/macros/s/AKfycby9PsrvRPqrvNBgSEZ7nFNCRdB5vfEuqqDqVmg5bEOAjF29hh3q5I3P3FpK4chzIGOu/exec';
+    const form = document.getElementById('primeWebForm');
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault(); // Page ko reload hone se rokne ke liye
+        
+        // Button ko temporarily disable aur loading text show karne ke liye
+        submitBtn.disabled = true;
+        submitBtn.innerText = "SUBMITTING DATA...";
+
+        // Form data send karna
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                alert("Thank you! Details successfully submitted to our database.");
+                form.reset(); // Form clear karne ke liye
+                submitBtn.disabled = false;
+                submitBtn.innerText = "SUBMIT DETAILS";
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                alert("Something went wrong. Please try again.");
+                submitBtn.disabled = false;
+                submitBtn.innerText = "SUBMIT DETAILS";
+            });
+    });
+</script>
+
+</body>
+</html>
