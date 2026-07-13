@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="KIYARO Web Design and Development - Client Details and Payment Form. We design, develop, and grow your business online.">
+    <meta name="keywords" content="Web Design, Web Development, KIYARO, Client Form, Website Development, IT Services">
+    <meta name="author" content="Nikhil Sahu">
+    <meta name="robots" content="index, follow">
+
     <title>KIYARO | WEB DESIGN AND DEVELOPMENT - Client Form</title>
     <style>
         body { font-family: 'Arial', sans-serif; background-color: #f9f9f9; padding: 20px; }
-        .form-container { max-width: 800px; margin: auto; background: white; padding: 40px; border: 3px solid #002d62; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .form-container { max-width: 800px; margin: auto; background: white; padding: 40px; border: 3px solid #002d62; box-shadow: 0 0 10px rgba(0,0,0,0.1); box-sizing: border-box; }
         .header { border-bottom: 2px solid #002d62; padding-bottom: 15px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: flex-end; }
         .header h1 { color: #002d62; margin: 0; font-size: 28px; }
         .header p { margin: 0; color: #555; font-size: 14px; }
@@ -55,6 +61,7 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
             text-align: left;
             border: 1px solid #e2e8f0;
+            box-sizing: border-box;
         }
 
         .modal-content h2 {
@@ -99,6 +106,20 @@
         .close-btn:hover {
             color: #002d62;
         }
+
+        /* --- MOBILE RESPONSIVE STYLES --- */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .form-container { padding: 20px; margin: 0 auto; width: 100%; }
+            .header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .header-right { text-align: left; margin-top: 5px; }
+            .header h1 { font-size: 22px; }
+            .form-row { flex-direction: column; gap: 15px; margin-bottom: 15px; }
+            .modal-content { padding: 25px; width: 95%; }
+            .modal-content h2 { font-size: 20px; }
+            .close-btn { top: 15px; right: 15px; }
+            button { font-size: 16px; padding: 12px; }
+        }
     </style>
 </head>
 <body>
@@ -116,21 +137,19 @@
         </div>
     </div>
 
-    <form id="KIYAROFORM">
-        <!-- CLIENT DETAILS -->
+    <form id="KIYARO">
         <div class="section-title">CLIENT DETAILS</div>
         <div class="form-row">
             <div class="form-group"><label>Full Name:</label><input type="text" name="fullName" required></div>
             <div class="form-group"><label>Date:</label><input type="text" name="date" placeholder="DD/MM/YYYY"></div>
         </div>
-        <div class="form-group"><label>Business Name:</label><input type="text" name="businessName"></div>
-        <div class="form-group"><label>Address:</label><input type="text" name="address"></div>
+        <div class="form-group" style="margin-bottom: 15px;"><label>Business Name:</label><input type="text" name="businessName"></div>
+        <div class="form-group" style="margin-bottom: 15px;"><label>Address:</label><input type="text" name="address"></div>
         <div class="form-row">
             <div class="form-group"><label>Contact No.:</label><input type="text" name="contactNo"></div>
             <div class="form-group"><label>Email ID:</label><input type="email" name="email"></div>
         </div>
 
-        <!-- WEBSITE & TECH DETAILS -->
         <div class="section-title">WEBSITE & TECH DETAILS</div>
         <div class="form-row">
             <div class="form-group"><label>Domain Name:</label><input type="text" name="domainName"></div>
@@ -138,10 +157,8 @@
         </div>
         <div class="form-group"><label>Required Pages/Features:</label><textarea name="features"></textarea></div>
 
-        <!-- PAYMENT DETAILS -->
         <div class="section-title">PAYMENT DETAILS</div>
         
-        <!-- QR Code Section -->
         <div class="qr-container">
             <label>Scan QR Code to Pay:</label>
             <img src="qr.jpg" alt="Payment QR Code" class="qr-image" onerror="this.src='https://via.placeholder.com/180?text=QR+Code+Missing'">
@@ -158,7 +175,6 @@
             </div>
         </div>
 
-        <!-- Important User Note (Triggers Modals) -->
         <div class="form-note">
             <strong>Note:</strong> Ek baar form fill karne se pehle <a onclick="openModal('termsModal')">Terms and Condition</a> aur <a onclick="openModal('policyModal')">Privacy Policy</a> padh lo.
         </div>
@@ -167,7 +183,6 @@
     </form>
 </div>
 
-<!-- TERMS & CONDITIONS MODAL -->
 <div class="modal" id="termsModal">
     <div class="modal-content">
         <button class="close-btn" onclick="closeModal('termsModal')">&times;</button>
@@ -191,7 +206,6 @@
     </div>
 </div>
 
-<!-- PRIVACY POLICY MODAL -->
 <div class="modal" id="policyModal">
     <div class="modal-content">
         <button class="close-btn" onclick="closeModal('policyModal')">&times;</button>
@@ -210,7 +224,6 @@
     </div>
 </div>
 
-<!-- JavaScript for Interactive Controls & Google Sheet Database -->
 <script>
     // Modals Control Functions
     function openModal(modalId) {
